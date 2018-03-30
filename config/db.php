@@ -1,10 +1,10 @@
 <?php
 
     class db {
-        private $dbhost = 'iwqrvsv8e5fz4uni.cbetxkdyhwsb.us-east-1.rds.amazonaws.com';
-        private $dbuser = 'fvrj3u6h61o7784h';
-        private $dbpass = 'sdge90a611wxv9cb';
-        private $dbname = 'aa50fhmbma0hfxk7';
+        private $dbhost = 'y2w3wxldca8enczv.cbetxkdyhwsb.us-east-1.rds.amazonaws.com';
+        private $dbuser = 'hq0uu1lh61z9l0br';
+        private $dbpass = 't2919fwobev4dklj';
+        private $dbname = 'nrm0t8gdg6uch1z6';
         //cnnect
         public function connect ( ){
             $mysql_connect_str = "mysql:host=$this->dbhost;dbname=$this->dbname;";
