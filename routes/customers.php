@@ -12,7 +12,8 @@ $app ->get('/api/v1/customers', function(Request $req, Response $res){
         $stmt = $db->query($sql);
         $customers = $stmt->fetchAll(PDO::FETCH_OBJ);
         $db = null;
-        echo json_encode($customers);
+        return $res->withJson($customers);
+        
 
     } catch (PDOException $e){
         echo '{"errorr": {"text":'.$e->getMessage().'}';
