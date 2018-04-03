@@ -22,6 +22,7 @@ exit();
 });
 
 require './routes/customers.php';
+require './routes/datosPaciente.php';
 
 $app->run();
 ?>
