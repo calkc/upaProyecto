@@ -5,8 +5,11 @@ use \Psr\Http\Message\ResponseInterface as Response;
 $app = new \Slim\App;
 
 $app ->get('/api/v1/todosPacientes', function (Request $req, Response $res){
+    
     $sql = "SELECT * FROM datosPaciente";
+
     try {
+
         $db = new db();
         $db = $db ->connect();
         $stmt = $db->query($sql);
@@ -14,18 +17,35 @@ $app ->get('/api/v1/todosPacientes', function (Request $req, Response $res){
         $db = null;
         return $res->withJson($Pacientes);
 
+
     } catch (PDOException $e){
         echo '{"errorr": {"text":'.$e->getMessage().'}';
     }
 
 });
 
+$app ->get('/api/v1/paciente/{id}', function(Request $req, Response $res){
+    $id = $req->getAttribute('id');
+    $sql = "select * from datosPaciente WHERE idPaciente = $id";
+    try {
+        $db = new db();
+        $db = $db -> connect();
+        $stmt = $db -> query($sql);
+        $Pacientes = $stmt -> fetchAll(PDO::FETCH_OBJ);
+        $db = null;
+        return $res->withJson($Pacientes);
+        
+
+    } catch (PDOException $e){
+        echo '{"error": {"text":'.$e->getMessage().'}';
+    }
+});
 
 $app ->post('/api/v1/paciente/add', function(Request $req, Response $res){
     
     //$fechaNacimiento = $req -> getParam('fechaNacimiento');
     
-    
+
     $estadoCivil = $req -> getParam('estadoCivil');
     $genero = $req -> getParam('genero');
     $calle = $req -> getParam('calle');
