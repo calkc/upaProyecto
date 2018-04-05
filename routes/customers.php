@@ -81,9 +81,7 @@ $app ->put('/api/v1/customer/update/{id}', function(Request $req, Response $res)
     $city = $req -> getParam('city');
     $state =$req -> getParam('state');
 
-    echo $id .$first_name. $last_name. $address . $city . $state;
 
- 
     $sql = "UPDATE CUSTOMERS SET
         first_name  = :first_name,
         last_name   = :last_name,
