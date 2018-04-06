@@ -27,6 +27,7 @@ $app ->get('/modulo1/todosLosPacientes', function (Request $req, Response $res){
 
 
 $app ->get('/modulo1/pacientePorId/{id}', function(Request $req, Response $res){
+    
     $id = $req->getAttribute('id');
     $sql = "select * from pacientes WHERE idPaciente = $id";
     try {
@@ -61,11 +62,11 @@ $app ->delete('/modulo1/eliminarPorId/{id}', function (Request $req, Response $r
 
 });
 
-$app -> put('/modulo1/actualizarPacientePorId/{id}', function(Request $req, Response $res){
+$app -> post('/modulo1/actualizarPacientePorId/{id}', function(Request $req, Response $res){
     
     $id = $req->getAttribute('id');
 
-    echo  $req -> getParam('nombre');
+    $method = $req->getMethod();
    
 
     $nombre= $req -> getParam('nombre');
