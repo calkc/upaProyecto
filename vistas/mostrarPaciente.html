@@ -9,14 +9,6 @@
 	<link rel="stylesheet" href="bustras/css/bootstrap-theme.css">
 	<link rel="stylesheet" href="bustras/css/estilos.css">
 	<link rel="stylesheet" href="style.css">
-	<style>
-		td{
-			padding: 10px;
-
-		}
-		    
-	
-	</style>
 </head>
 
 <body>
@@ -125,10 +117,7 @@
 					<th>Teléfono</th>
 					<th>Celular</th>
 					<th>Email</th>
-					
-					<th>Modificar/Eliminar</th>
-					<th>Mostrar toda la información</th>
-
+					<th>Ocupación</th>
 
 				</tr>
 				<!-- clases succeed info warning y danger son colorsitos -->
@@ -136,9 +125,17 @@
 
 
 			</table>
+			<br>
+
+			<div id="antece"></div>
 		</div>
 		
 	</div>
+
+	
+
+	
+							
 
 	<script src="bustras/js/jquery.min.js"></script>
 	<script src="bustras/js/bootstrap.js"></script>
@@ -152,6 +149,15 @@
 			await fetch(url, method);
 			
 		}
+		function getParameterByName(name, url) {
+			if (!url) url = window.location.href;
+			name = name.replace(/[\[\]]/g, "\\$&");
+			var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+				results = regex.exec(url);
+			if (!results) return null;
+			if (!results[2]) return '';
+			return decodeURIComponent(results[2].replace(/\+/g, " "));
+		}
 
 		$(document).ready(function () {
 
@@ -159,7 +165,11 @@
 
 			async function todosLospaciente() {
 
-				const result = await fetch('http://localhost/slim-json-heroku/modulo1/todosLosPacientes');
+				const id = getParameterByName('idPaciente');
+				console.log(id);
+
+
+				const result = await fetch(`http://localhost/slim-json-heroku/modulo1/pacientePorId/${id}`);
 				const pacientes = await result.json();
 
 				pacientes.forEach(paciente => {
@@ -176,19 +186,26 @@
 							<td>${paciente.telefono}</td>
 							<td>${paciente.celular}</td>
 							<td>${paciente.email}</td>
+							<td>${paciente['ocupación']}</td>
 							
-							
-				
-							<td>
-								<a href="./editarPaciente.html?idPaciente=${paciente.idpaciente}"   class="btn btn-warning">Modificar</a>&#9;
-								<a href="" onclick="eliminarPorid(${paciente.idpaciente})" class="btn btn-danger">Eliminar</a>
-							</td>
-							<td>
-								<a href="./mostrarPaciente.html?idPaciente=${paciente.idpaciente}"   class="btn btn-warning">Mostrar</a>&#9;
-							</td>
-						</tr>`;
+
+						
+						</tr>
+						`;
 
 					$('.table').append(registros);
+					const antece = `
+						<p><strong>Fecha de registro:</strong> ${paciente.fecha_registro}</p><br>
+						<p><strong>Enfermedades heredas:</strong> ${paciente.enfs_here}</p><br>
+						<p><strong>Antecedentes no patológicos:</strong> ${paciente.ant_no_pat}</p><br>
+						<p><strong>Antecedentes perinatales:</strong> ${paciente.ant_peri}</p><br>
+						<p><strong>Antecedentes gineco-obstétricos (sólo para mujeres):</strong> ${paciente.ant_gine}</p><br>
+						<p><strong>Antecedentes patológicos:</strong> ${paciente.ant_pat}</p><br>
+					`;
+
+					$('#antece').append(antece);
+
+					
 
 				});
 
