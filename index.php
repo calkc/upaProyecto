@@ -10,9 +10,8 @@ $app->get('/hello/:name',function($name){
 require './config/db.php';
 
 
-require './routes/customers.php';
 require './routes/datosPaciente.php';
-require './routes/visitas.php';
+
 
 $app->run();
 ?>
