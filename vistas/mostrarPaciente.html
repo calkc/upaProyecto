@@ -104,27 +104,8 @@
 			</nav>
 		</header>
 		<div class="container">
-			<table class="table table-condensed table-hover">
-				<!--Striped es alternar colores de tabla y table-condensed para tablas apretaditasxd -->
-				<tr class="active">
-					<th>ID</th>
-					<th>Nombre</th>
-					<th>Apellido</th>
-					<th>Fecha de nacimiento</th>
-					<th>Estado civil</th>
-					<th>Genero</th>
-					<th>Domicilio</th>
-					<th>Teléfono</th>
-					<th>Celular</th>
-					<th>Email</th>
-					<th>Ocupación</th>
-
-				</tr>
-				<!-- clases succeed info warning y danger son colorsitos -->
-
-
-
-			</table>
+			<div class="nombre"></div>
+			
 			<br>
 
 			<div id="antece"></div>
@@ -174,28 +155,17 @@
 				const pacientes = await result.json();
 
 				pacientes.forEach(paciente => {
-					const registros = `
-						<tr id="${paciente.idpaciente}">
-							
-							<td >${paciente.idpaciente}</td>
-							<td>${paciente.nombre}</td>
-							<td>${paciente.apellidos}</td>
-							<td>${paciente.fecha_nacimiento}</td>
-							<td>${paciente.estado_civil}</td>
-							<td>${paciente.genero}</td>
-							<td>${paciente.domicilio}</td>
-							<td>${paciente.telefono}</td>
-							<td>${paciente.celular}</td>
-							<td>${paciente.email}</td>
-							<td>${paciente['ocupación']}</td>
-							
+					
+					$('.nombre').append(`<h2>Paciente: ${paciente.nombre} ${paciente.apellidos}</h2>`);
 
-						
-						</tr>
-						`;
-
-					$('.table').append(registros);
 					const antece = `
+						<p><strong>Fecha de registro:</strong> ${paciente.fecha_nacimiento}</p><br>
+						<p><strong>Fecha de registro:</strong> ${paciente.estado_civil}</p><br>
+						<p><strong>Fecha de registro:</strong>${paciente.domicilio}</p><br>
+						<p><strong>Fecha de registro:</strong> ${paciente.telefono}</p><br>
+						<p><strong>Fecha de registro:</strong> ${paciente.celular}</p><br>
+						<p><strong>Fecha de registro:</strong> ${paciente.email}</p><br>
+						<p><strong>Fecha de registro:</strong> ${paciente['ocupación']}</p><br>
 						<p><strong>Fecha de registro:</strong> ${paciente.fecha_registro}</p><br>
 						<p><strong>Enfermedades heredas:</strong> ${paciente.enfs_here}</p><br>
 						<p><strong>Antecedentes no patológicos:</strong> ${paciente.ant_no_pat}</p><br>
