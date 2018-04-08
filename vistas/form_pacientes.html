@@ -188,18 +188,10 @@
 
 		$(document).ready(function () {
 			$("#addProductForm").submit(function (event) {
-
-				
 				const url = 'http://localhost/slim-json-heroku/modulo1/agregarPaciente';
-
-
 				event.preventDefault();
-
-
 				const formData = new FormData($(this)[0]);
 				console.log(formData);
-
-
 				$.ajax({
 					url: url,
 					type: 'POST',
@@ -207,21 +199,15 @@
 					contentType: false,
 					cache: false,
 					processData: false,
-
-
 					success: function (returndata) {
-
 						alert("Datos actualizados correctamente");
-
 					},
 					error: function () {
 						alert("Hubo un problema al actualizar");
 					}
 				});
 				return false;
-
 			});
-
 		});
 
 

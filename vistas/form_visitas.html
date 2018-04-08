@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	<meta charset="UTF-8">
 	<title>Nav bars</title>
@@ -8,59 +9,92 @@
 	<link rel="stylesheet" href="bustras/css/bootstrap-theme.css">
 	<link rel="stylesheet" href="bustras/css/estilos.css">
 </head>
+
 <body>
 	<div class="container contenedor_principal">
 		<br>
 		<header>
 			<nav class="navbar navbar-default navbar-fixed-top navbar-inverse">
-			<!-- navbar-fixed-top o bottom ocupa el 100$ independientemente de si lo encierras en un container -->
-			<!-- Si se utiliza el fixed top entonces tienes que agregar padding al body para que se muestre el texto debajo del nav -->
+				<!-- navbar-fixed-top o bottom ocupa el 100$ independientemente de si lo encierras en un container -->
+				<!-- Si se utiliza el fixed top entonces tienes que agregar padding al body para que se muestre el texto debajo del nav -->
 				<div class="container-fluid">
 					<div class="navbar-header">
 						<a href="#" class="navbar-brand">Esto no es Dolibarr</a>
 					</div>
 					<div class="collapse navbar-collapse" id="navbar1">
-					<!-- id tiene que ser igual que el que pusiste en el data-target, solo que en este se le añade # -->
+						<!-- id tiene que ser igual que el que pusiste en el data-target, solo que en este se le añade # -->
 						<ul class="nav navbar-nav">
 							<li class="dropdown">
-								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Modulo Lalo <span class="caret"></span></a>
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Modulo Lalo
+									<span class="caret"></span>
+								</a>
 								<ul class="dropdown-menu">
-									<li><a href="">Cosa Modulo #1</a></li>
-									<li><a href="">Cosa Modulo #2</a></li>
+									<li>
+										<a href="">Cosa Modulo #1</a>
+									</li>
+									<li>
+										<a href="">Cosa Modulo #2</a>
+									</li>
 									<li role="separator" class="divider"></li>
-									<li><a href="">Cosa Modulo #4</a></li>
+									<li>
+										<a href="">Cosa Modulo #4</a>
+									</li>
 								</ul>
 							</li>
-							
+
 							<li class="dropdown">
-								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Modulo Betty <span class="caret"></span></a>
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Modulo Betty
+									<span class="caret"></span>
+								</a>
 								<ul class="dropdown-menu">
-									<li><a href="">Cosa Modulo #1</a></li>
-									<li><a href="">Cosa Modulo #2</a></li>
+									<li>
+										<a href="">Cosa Modulo #1</a>
+									</li>
+									<li>
+										<a href="">Cosa Modulo #2</a>
+									</li>
 									<li role="separator" class="divider"></li>
-									<li><a href="">Cosa Modulo #4</a></li>
+									<li>
+										<a href="">Cosa Modulo #4</a>
+									</li>
 								</ul>
 							</li>
-							
+
 							<li class="dropdown">
-								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Modulo Zuñiga<span class="caret"></span></a>
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Modulo Zuñiga
+									<span class="caret"></span>
+								</a>
 								<ul class="dropdown-menu">
-									<li><a href="">Cosa Modulo #1</a></li>
-									<li><a href="">Cosa Modulo #2</a></li>
+									<li>
+										<a href="">Cosa Modulo #1</a>
+									</li>
+									<li>
+										<a href="">Cosa Modulo #2</a>
+									</li>
 									<li role="separator" class="divider"></li>
-									<li><a href="">Cosa Modulo #4</a></li>
+									<li>
+										<a href="">Cosa Modulo #4</a>
+									</li>
 								</ul>
 							</li>
 						</ul>
 						<!-- terminan bottones -->
 						<ul class="nav navbar-nav navbar-right">
 							<li class="dropdown">
-								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown
+									<span class="caret"></span>
+								</a>
 								<ul class="dropdown-menu">
-									<li><a href="">Cosa Modulo #1</a></li>
-									<li><a href="">Cosa Modulo #2</a></li>
+									<li>
+										<a href="">Cosa Modulo #1</a>
+									</li>
+									<li>
+										<a href="">Cosa Modulo #2</a>
+									</li>
 									<li class="divider"></li>
-									<li><a href="">Cosa Modulo #4</a></li>
+									<li>
+										<a href="">Cosa Modulo #4</a>
+									</li>
 								</ul>
 							</li>
 						</ul>
@@ -69,7 +103,15 @@
 			</nav>
 		</header>
 		<div class="container">
-			<form>
+			<form id="addProductForm" enctype="multipart/form-data">
+				<div class="form-group">
+					<label for="option">Id paciente</label>
+					<select class="form-control" id="idPaciente">
+
+
+					</select>
+				</div>
+
 				<div class="form-group">
 					<label for="nombre">Fecha:</label>
 					<input type="date" class="form-control" id="fecha" name="fecha">
@@ -94,14 +136,8 @@
 					<label for="presion_arte">Presion arterial:</label>
 					<input type="text" class="form-control" id="presion_arte" name="presion_arte" placeholder="Presion arterial">
 				</div>
-				<div class="form-group">
-					<label for="imc">IMC:</label>
-					<input type="text" class="form-control" id="imc" name="imc" placeholder="IMD">
-				</div>
-				<div class="form-group">
-					<label for="icc">ICC:</label>
-					<input type="text" class="form-control" id="icc" name="icc" placeholder="ICC">
-				</div>
+
+
 				<div class="form-group">
 					<label for="sintomatologia">Sintomatologia:</label>
 					<input type="text" class="form-control" id="sintomatologia" name="sintomatologia" placeholder="Sintomatologia">
@@ -114,10 +150,68 @@
 					<label for="comentarios_gen">Comentarios generales:</label>
 					<textarea name="comentarios_gen" id="comentarios_gen" cols="30" rows="10"></textarea>
 				</div>
+				<input type="submit" value="Agregar Visita">
 			</form>
 		</div>
 	</div>
-	<script src="../bustras/js/jquery.min.js"></script>
-	<script src="../bustras/js/bootstrap.js"></script>
+	<script src="bustras/js/jquery.min.js"></script>
+	<script src="bustras/js/bootstrap.js"></script>
+	<script>
+
+		$(document).ready(function () {
+			async function todosLospaciente() {
+
+				const result = await fetch('http://localhost/slim-json-heroku/modulo1/todosLosPacientes');
+				const pacientes = await result.json();
+
+				pacientes.forEach(paciente => {
+					const option = `<option value=${paciente.idpaciente}>${paciente.idpaciente}</option>`;
+					$('#idPaciente').append(option);
+				});
+
+			}
+
+			todosLospaciente();
+
+			$("#addProductForm").submit(function (event) {
+
+				alert($('#idPaciente').val());
+
+				const id = $('#idPaciente').val();
+
+				const url = 'http://localhost/slim-json-heroku/modulo1/agregarVisita/'+id;
+
+
+				event.preventDefault();
+
+
+				const formData = new FormData($(this)[0]);
+				console.log(formData);
+
+
+				$.ajax({
+					url: url,
+					type: 'POST',
+					data: formData,
+					contentType: false,
+					cache: false,
+					processData: false,
+					success: function (returndata) {
+						alert("Datos actualizados correctamente");
+					},
+					error: function () {
+						alert("Hubo un problema al actualizar");
+					}
+				});
+
+				return false;
+
+			});
+
+		});
+
+
+	</script>
 </body>
+
 </html>

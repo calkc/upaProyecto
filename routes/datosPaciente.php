@@ -270,14 +270,15 @@ $app ->post('/modulo1/agregarVisita/{idPaciente}', function(Request $req, Respon
 
 
     $idPaciente = $req->getAttribute('idPaciente');
+    
     $fecha = $req -> getParam('fecha');
     $peso = (float)$req -> getParam('peso');
     $talla = (float)$req -> getParam('talla');
     $cent_cintura = (float)$req -> getParam('cent_cintura');
     $cent_cadera =(float)$req -> getParam('cent_cadera');
     $presion_arte =$req -> getParam('presion_arte');
-    $imc = round($peso / pow(2, $talla)); 
-    $icc = round($cent_cintura / $cent_cadera);
+    $imc = $peso / pow(2, $talla); 
+    $icc = $cent_cintura / $cent_cadera;
     $sistematologia =$req -> getParam('sistematologia');
     $recomendacion =$req -> getParam('recomendacion');
     $progreso =$req -> getParam('progreso');
@@ -335,6 +336,22 @@ $app ->post('/modulo1/agregarVisita/{idPaciente}', function(Request $req, Respon
         return $res->withJson('{"notice": {"text": "Visita agregada"}');
         
         
+
+    } catch (PDOException $e){
+        echo '{"error": {"text":'.$e->getMessage().'}';
+    }
+});
+
+
+$app ->delete('/modulo1/eliminarVisitaPorId/{id}', function(Request $req, Response $res){
+    $id = $req->getAttribute('id');
+    $sql = "DELETE from visitas WHERE idvisita = $id";
+    try {
+        $db = new db();
+        $db = $db -> connect();
+        $stmt = $db -> prepare($sql);       
+        $stmt -> execute();
+        echo '{"notice": {"text": "Customer delete"}';
 
     } catch (PDOException $e){
         echo '{"error": {"text":'.$e->getMessage().'}';

@@ -10,12 +10,10 @@
 	<link rel="stylesheet" href="bustras/css/estilos.css">
 	<link rel="stylesheet" href="style.css">
 	<style>
-		td{
+		td {
 			padding: 10px;
 
 		}
-		    
-	
 	</style>
 </head>
 
@@ -44,6 +42,11 @@
 									<li>
 										<a href="">Mostrar todos los pacientes</a>
 									</li>
+
+									<li>
+										<a href="form_visitas.html">Agregar visita</a>
+									</li>
+
 									<li role="separator" class="divider"></li>
 									<li>
 										<a href="">Cosa Modulo #4</a>
@@ -124,10 +127,12 @@
 					<th>Domicilio</th>
 					<th>Teléfono</th>
 					<th>Celular</th>
-					<th>Email</th>
-					
+
+
+
 					<th>Modificar/Eliminar</th>
 					<th>Mostrar toda la información</th>
+					<th>Mostrar visitas</th>
 
 
 				</tr>
@@ -137,7 +142,7 @@
 
 			</table>
 		</div>
-		
+
 	</div>
 
 	<script src="bustras/js/jquery.min.js"></script>
@@ -150,7 +155,7 @@
 			};
 			const url = `http://localhost/slim-json-heroku/modulo1/eliminarPorId/${id}`
 			await fetch(url, method);
-			
+
 		}
 
 		$(document).ready(function () {
@@ -175,16 +180,16 @@
 							<td>${paciente.domicilio}</td>
 							<td>${paciente.telefono}</td>
 							<td>${paciente.celular}</td>
-							<td>${paciente.email}</td>
 							
-							
-				
 							<td>
 								<a href="./editarPaciente.html?idPaciente=${paciente.idpaciente}"   class="btn btn-warning">Modificar</a>&#9;
 								<a href="" onclick="eliminarPorid(${paciente.idpaciente})" class="btn btn-danger">Eliminar</a>
 							</td>
 							<td>
 								<a href="./mostrarPaciente.html?idPaciente=${paciente.idpaciente}"   class="btn btn-warning">Mostrar</a>&#9;
+							</td>
+							<td>
+								<a href="./mostrarVisita.html?id=${paciente.idpaciente}&genero=${paciente.genero}"   class="btn btn-warning">Mostrar</a>&#9;
 							</td>
 						</tr>`;
 
@@ -195,8 +200,6 @@
 			}
 			todosLospaciente();
 
-			
-			
 		});
 
 

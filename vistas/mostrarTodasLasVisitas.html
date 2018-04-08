@@ -108,16 +108,22 @@
 				<!--Striped es alternar colores de tabla y table-condensed para tablas apretaditasxd -->
 				<tr class="active">
 					<th>ID</th>
-					<th>Nombre</th>
-					<th>Apellido</th>
-					<th>Fecha de nacimiento</th>
-					<th>Estado civil</th>
-					<th>Genero</th>
-					<th>Domicilio</th>
-					<th>Teléfono</th>
-					<th>Celular</th>
-					<th>Email</th>
-					<th>Ocupación</th>
+
+					<th>Fecha</th>
+					<th>Peso</th>
+					<th>Talla</th>
+					<th>Cm. Cintura</th>
+					<th>Cm. Cadera</th>
+					<th>Presion Arterial</th>
+					<th>IMC</th>
+					<th>ICC</th>
+					<th>Sintomatologia</th>
+					<th>Recomendaciones</th>
+                    <th>Progreso</th>
+					<th>Comentarios</th>
+					<th>ID dieta</th>
+					<th>Modificar/Eliminar</th>
+					<th>Mostrar toda la información</th>
 
 				</tr>
 				<!-- clases succeed info warning y danger son colorsitos -->
@@ -142,6 +148,8 @@
 
 	<script>
 		async function eliminarPorid(id) {
+			const id = 'delete'+id;
+			$(id).remove();
 			const method = {
 				method: 'delete'
 			};
@@ -149,7 +157,6 @@
 			await fetch(url, method);
 			
 		}
-		
 		function getParameterByName(name, url) {
 			if (!url) url = window.location.href;
 			name = name.replace(/[\[\]]/g, "\\$&");
@@ -164,44 +171,58 @@
 
 
 
-			async function todosLospaciente() {
 
-				const id = getParameterByName('idPaciente');
-				console.log(id);
+			async function todasLasVisitas() {
 
-
-				const result = await fetch(`http://localhost/slim-json-heroku/modulo1/pacientePorId/${id}`);
-				const pacientes = await result.json();
-
-				pacientes.forEach(paciente => {
+				const result = await fetch('http://localhost/slim-json-heroku/modulo1/todasLasVisitas');
+				const visitas = await result.json();
+               console.log(visitas)
+				visitas.forEach(visita=> {
 					const registros = `
-						<tr id="${paciente.idpaciente}">
+						<tr id="delete${visita.idvisita}">
 							
-							<td >${paciente.idpaciente}</td>
-							<td>${paciente.nombre}</td>
-							<td>${paciente.apellidos}</td>
-							<td>${paciente.fecha_nacimiento}</td>
-							<td>${paciente.estado_civil}</td>
-							<td>${paciente.genero}</td>
-							<td>${paciente.domicilio}</td>
-							<td>${paciente.telefono}</td>
-							<td>${paciente.celular}</td>
-							<td>${paciente.email}</td>
-							<td>${paciente['ocupación']}</td>
+							<td>${visita.idvisita}</td>
+							<td>${visita.fecha}</td>
+							<td>${visita.peso}</td>
+							<td>${visita.talla}</td>
+							<td>${visita.cent_cintura}</td>
+							<td>${visita.cent_cadera}</td>
+							<td>${visita.presion_arte}</td>
+							<td>${visita.imc}</td>
+							<td>${visita.icc}</td>
+							<td>${visita.sintomatologia}</td>
+							<td>${visita.recomendaciones}</td>
+							<td>${visita.progreso}</td>
+							<td>${visita.comentarios_gen}</td>
 							
-
-						
-						</tr>
-						`;
+							<td>${visita.FK_iddieta_dietas}</td>
+							
+				
+							<td>
+								<a href="./editarVisita.html?idv=${visita.idvisita}"   class="btn btn-warning">Modificar</a>&#9;
+								<a href="#" onclick="eliminarPorid(${visita.idvisita})" class="btn btn-danger">Eliminar</a>
+							</td>
+							<td>
+								<a href="./mostrarVisita.html?id=${visita.idvisita}"   class="btn btn-warning">Mostrar</a>&#9;
+							</td>
+						</tr>`;
 
 					$('.table').append(registros);
+
 					const antece = `
-						<p><strong>Fecha de registro:</strong> ${paciente.fecha_registro}</p><br>
-						<p><strong>Enfermedades heredas:</strong> ${paciente.enfs_here}</p><br>
-						<p><strong>Antecedentes no patológicos:</strong> ${paciente.ant_no_pat}</p><br>
-						<p><strong>Antecedentes perinatales:</strong> ${paciente.ant_peri}</p><br>
-						<p><strong>Antecedentes gineco-obstétricos (sólo para mujeres):</strong> ${paciente.ant_gine}</p><br>
-						<p><strong>Antecedentes patológicos:</strong> ${paciente.ant_pat}</p><br>
+					    <p><strong>ID </strong> ${visita.idvisita}</p><br>
+						<p><strong>Fecha:</strong> ${visita.fecha}</p><br>
+						<p><strong>Peso:</strong> ${visita.peso}</p><br>
+						<p><strong>Talla:</strong> ${visita.talla}</p><br>
+						<p><strong>Cm Cintura:</strong> ${visita.cent_cintura}</p><br>
+						<p><strong>Cm Cadera: </strong> ${visita.cent_cadera}</p><br>
+						<p><strong>Presion arterial:</strong> ${visita.presion_arte}</p><br>
+						<p><strong>IMC </strong> ${visita.imc}</p><br>
+						<p><strong>ICC </strong> ${visita.icc}</p><br>
+						<p><strong>Sintomatologia </strong> ${visita.sintomatologia}</p><br>
+						<p><strong>Recomendaciones</strong> ${visita.recomendaciones}</p><br>
+						<p><strong>Progreso</strong> ${visita.progreso}</p><br>
+						<p><strong>Comentarios</strong> ${visita.comentarios_gen}</p><br>
 					`;
 
 					$('#antece').append(antece);
@@ -211,7 +232,8 @@
 				});
 
 			}
-			todosLospaciente();
+			
+			todasLasVisitas();
 
 			
 			
